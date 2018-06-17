@@ -1,0 +1,22 @@
+{
+    "name": "cedric/oquiz",
+    "description": "Evalution PHP sur le sujet d'un Quiz",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Cédric Pourrias",
+            "email": "pourriascedric@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "league/plates": "^3.3",
+        "altorouter/altorouter": "^1.2",
+        "symfony/var-dumper": "^3.4"
+    },
+    "autoload": {
+      "psr-4": {
+        "OQuiz\\" :"app/"
+      }
+    }
+}

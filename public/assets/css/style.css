@@ -1,0 +1,238 @@
+body {
+    margin: 0 1em;
+}
+
+/*********/
+/*  NAV  */
+
+.nav-container {
+    justify-content: space-between;
+}
+.nav-title {
+    color: #337AB7;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 2.5em;
+}
+.nav-user {
+    color: #337AB7;
+    padding-right: 0.5rem;
+}
+.nav-user-name, .maj {
+    text-transform: capitalize;
+}
+.nav-user, .nav-link {
+    margin: auto;
+    font-size: 1em;
+}
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+}
+.nav-link:hover {
+    background: #337AB7;
+    color: #FFF;
+    border-radius: 5px;
+}
+
+/************/
+/*  FOOTER  */
+
+footer {
+    text-align: center
+}
+
+/**********/
+/*  HOME  */
+
+.welcome-container,
+.profil-container {
+    margin-top: 2.5em;
+}
+.welcome-title {
+    font-weight: 500;
+    font-size: 3em;
+    font-family: 'Anton', sans-serif;
+}
+.quizzes-container {
+    margin: 2.5em auto;
+}
+.quizzes-row {
+    margin: auto;
+}
+.quizzes-card {
+    padding: 1em 1.5em;
+    color: #000;
+}
+.quizzes-card:hover,
+.quizzes-card:hover>.quizzes-title {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #337AB7;
+    border-radius: 25px;
+}
+.quizzes-title {
+    color: #337AB7;
+    font-weight: 700;
+    font-size: 2.1em;
+}
+.quizzes-title:hover {
+    text-decoration: none;
+}
+.quizzes-description {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/************/
+/*  SIGNUP  */
+
+.signup-form {
+    margin: 2em auto;
+}
+.form-group label {
+    font-weight: bold;
+    margin-left: 1em;
+}
+.signup-btn, .login-btn, .profile-btn {
+    display: block;
+    margin:3em auto;
+    padding: 0.75em 2em;
+}
+.signup-ico {
+    margin-left: 20px;
+}
+ /***********/
+ /*  LOGIN  */
+
+ .login-container {
+     margin: 2em auto;
+ }
+ .login-title {
+     color: #337AB7;
+     text-align: center;
+     text-shadow: 0 0 5px #FFF;
+     border: #337AB7 1px solid;
+     border-radius: 25px;
+     padding: 15px;
+     background: linear-gradient(#337AB7, #FFF);
+ }
+ .login-alert, .signup-form, .login-valid {
+     margin: 2em auto;
+ }
+.login-valid {
+    text-align: center;
+}
+
+/************/
+/*  PROFIL  */
+
+.profile-title {
+    margin-top: 1em;
+    color: #337AB7;
+    margin-bottom: 1em;
+}
+.profile-row {
+    margin: auto;
+}
+.profile-container-cards {
+    border: solid 1px #337AB7;
+    border-radius: 25px 0 0 25px;
+    padding: 0;
+    border-right: none;
+}
+
+.profile-container-title {
+    text-align: center;
+    color: #337AB7;
+    /* text-decoration: underline; */
+    margin: 0.5em;
+}
+.profile-quizzes-title {
+    font-size: 1.5em;
+}
+.profile-container-informations {
+    background-color: rgba(51, 122, 183, 0.25);
+    border: solid 1px #337AB7;
+    border-radius: 0 25px 25px 0;
+}
+
+/**********/
+/*  QUIZ  */
+
+.quiz-container-title {
+    margin: 2em auto;
+}
+.quiz-title {
+    font-family: 'Anton', sans-serif;
+}
+.quiz-title-count {
+    margin-left: 1.5em;
+    font-family: Arial,sans-serif;
+    font-size: 0.5em;
+    padding: .25em .4em;;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+.quiz-title-description {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5em;
+}
+.quiz-replay-link {
+    display: inherit;
+}
+.quiz-question-card {
+    padding: 0;
+    flex: 1 0 31%;
+    margin: 0.5em;
+}
+
+.quiz-question-title {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.badge {
+    color: #FFF;
+    float: right;
+    vertical-align: top;
+}
+.level-1 {
+    background-color: #28A745;
+}
+.level-2 {
+    background-color: #ffc107;
+}
+.level-3 {
+    background-color: #DC3545;
+}
+
+.quiz-question-liste {
+    list-style-type: decimal;
+}
+.quiz-question-liste-item,
+.quiz-question-liste-radio {
+    margin: 0.25em 2em;
+}
+
+.quiz-question-anecdote-link {
+    color: #337AB7;
+    font-size: 0.85em;
+    text-align: center;
+}
+
+.quiz-question-anecdote-container {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+
+}
+.quiz-btn {
+    width: 100%;
+}
+.quiz-btn-valid{
+    background-color: #337AB7;
+    color: #FFF;
+}

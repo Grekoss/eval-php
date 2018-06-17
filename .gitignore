@@ -1,0 +1,35 @@
+# Répertoire des sources de composer
+/vendor/
+
+# Fichier d'infos interes à composer
+composer.lock
+
+# Fichier de config
+app/config.conf
+
+# NPM packages folder
+node_modules/
+
+# Bower folder
+bower_components/
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
