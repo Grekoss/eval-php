@@ -3,7 +3,7 @@
 Voici un tableau avec ton évaluation de tes compétences.
 J'y ai ajouté mon avis basé sur le parcours ou l'évaluation fourni(e).
 
-| Notion | Ton avis | Mon avis |
+| Notion | Avis Elève | Avis Teacher |
 |--|--|--|
 | Syntaxe PHP | acquis | acquis |
 | Les boucles avec PHP | en cours d'acquisition | acquis |
