@@ -29,7 +29,7 @@ class QuestionModel extends CoreModel {
 
     public static function findQuestionsByIdQuizWithLevel($id_quiz) {
 
-        $sql = 'SELECT questions.*, levels.name FROM questions INNER JOIN levels ON questions.id_level = levels.id WHERE questions.id_quiz = :id';
+        $sql = 'SELECT '.static::TABLE_NAME.'.*, levels.name FROM questions INNER JOIN levels ON '.static::TABLE_NAME.'.id_level = levels.id WHERE '.static::TABLE_NAME.'.id_quiz = :id';
         // Préparation
         $pdoStatement = Database::getPDO()->prepare($sql);
         // Blind

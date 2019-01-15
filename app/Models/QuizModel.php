@@ -22,7 +22,7 @@ class QuizModel extends CoreModel {
     // Méthodes :
     public static function findAllWithAuthorName() {
 
-        $sql = 'SELECT quizzes.*, users.first_name, users.last_name FROM quizzes INNER JOIN users ON quizzes.id_author = users.id';
+        $sql = 'SELECT '.static::TABLE_NAME.'.*, users.first_name, users.last_name FROM '.static::TABLE_NAME.' INNER JOIN users ON '.static::TABLE_NAME.'.id_author = users.id';
         // Utilisation de la classe Database pour se connecter à la DDB
         $pdo = Database::getPDO();
         // Exécution de la requête
