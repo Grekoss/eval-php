@@ -27,6 +27,10 @@ La plupart des commentaires ci-dessous sont des pistes pour améliorer encore la
 - C'est bien d'avoir pensé à mettre le nom de la table dans une constante.
 - … mais dommage de ne pas avoir utilisé cette constante dans tes requêtes :stuck_out_tongue_closed_eyes:
 
+### Correction
+
+- [x] Controle de toute les requêtes afin d'utiliser les constantes mis a disposition dans chaque class.
+
 
 
 

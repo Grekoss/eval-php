@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="quiz-container-title">
-        <h1 class="quiz-title"><?= $quiz->getTitle() ?><em class="quiz-title-count badge-secondary"><?= count($question) ?>&nbsp;questions</em></h1>
+        <h1 class="quiz-title"><?= $quiz->getTitle() ?><em class="quiz-title-count badge-secondary"><?= count($questions) ?>&nbsp;questions</em></h1>
         <div class="quiz-title-description"><?= $quiz->getDescription() ?></div>
         <div class="quiz-title-author">by <?= $author->getFirstName() ?>&nbsp;<?= $author->getLastName() ?></div>
     </div>
@@ -15,54 +15,47 @@
         Nouveau jeu : Répondez au maximum de questions avant de valider
     </div>
     <div class="alert alert-success" id="quiz-score-box" role="alert" style="display:none">
-        Votre score : <em id="quiz-score-txt"></em> / <?= count($question) ?>
+        Votre score : <em id="quiz-score-txt"></em> / <?= count($questions) ?>
         <a class="quiz-replay-link" href="<?= $router->generate('quiz_quiz', ['id' => $quiz->getId()])?>">Rejouer</a>
     </div>
     <?php endif; ?>
 
+
     <form class="row" id="formQuiz" method="post" action="">
-        <?php foreach ($question as $currentQuestion) : ?>
-
-            <?php
-            // Balise PHP pour la création de l'array contenant les propositions de faire un shuffle avec
-            $reponses = array($currentQuestion->getProp1(), $currentQuestion->getProp2(), $currentQuestion->getProp3(), $currentQuestion->getProp4());
-            // Mélange de l'array
-            shuffle($reponses);
-            ?>
-
+        <?php foreach ($questions as $key => $currentQuestion) : ?>
             <div class="quiz-question-card col-4 card">
                 <div class="quiz-question-title card-header">
                     <div class="quiz-question-level badge level-<?= $currentQuestion->getIdLevel()?>"><?= $currentQuestion->name ?></div>
                     <?= $currentQuestion->getQuestion() ?>
                 </div>
                 <div class="quiz-question-container-answers">
-                
+
                 <?php if($connectedUser !== false) : ?>
 
                     <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[0]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[0] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[0])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[0] ?></label>
+                        <input class="form-check-input" type="radio" id="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][0]) ?>" name="<?= $currentQuestion->getId() ?>" value="<?= trim($answers[$key][0]) ?>" >
+                        <label class="form-check-label" for="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][0]) ?>"><?= $answers[$key][0] ?></label>
                     </div>
                     <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[1]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[1] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[1])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[1] ?></label>
+                        <input class="form-check-input" type="radio" id="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][1]) ?>" name="<?= $currentQuestion->getId() ?>" value="<?= trim($answers[$key][1]) ?>">
+                        <label class="form-check-label" for="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][1]) ?>"><?= $answers[$key][1] ?></label>
                     </div>
                     <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[2]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[2] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[2])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[2] ?></label>
+                        <input class="form-check-input" type="radio" id="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][2]) ?>" name="<?= $currentQuestion->getId() ?>" value="<?= trim($answers[$key][2]) ?>">
+                        <label class="form-check-label" for="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][2]) ?>"><?= $answers[$key][2] ?></label>
                     </div>
                     <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[3]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[3] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[3])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[3] ?></label>
+                        <input class="form-check-input" type="radio" id="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][3]) ?>" name="<?= $currentQuestion->getId() ?>" value="<?= trim($answers[$key][3]) ?>">
+                        <label class="form-check-label" for="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answers[$key][3]) ?>"><?= $answers[$key][3] ?></label>
                     </div> 
 
                 <?php else : ?>
 
                     <ol class="quiz-question-liste">
-                        <li class="quiz-question-liste-item"><?= $reponses[0] ?></li>
-                        <li class="quiz-question-liste-item"><?= $reponses[1] ?></li>
-                        <li class="quiz-question-liste-item"><?= $reponses[2] ?></li>
-                        <li class="quiz-question-liste-item"><?= $reponses[3] ?></li>
+                        <li class="quiz-question-liste-item"><?= $answers[$key][0] ?></li>
+                        <li class="quiz-question-liste-item"><?= $answers[$key][1] ?></li>
+                        <li class="quiz-question-liste-item"><?= $answers[$key][2] ?></li>
+                        <li class="quiz-question-liste-item"><?= $answers[$key][3] ?></li>
                     </ol>
                 
                 <?php endif; ?>

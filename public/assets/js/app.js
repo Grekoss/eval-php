@@ -16,7 +16,7 @@ var app = {
 
     // Récupération des donnés du formulaire
     var formData = $(this).serialize();
-    //console.log(formData);
+    console.log(formData);
 
      //Appel Ajax
     $.ajax({
@@ -29,7 +29,7 @@ var app = {
       // On va sur une fonction pour faciliter le code
       app.controlOfAnswers(reponse);
 
-    }).fail(function(reponse) {
+    }).fail(function() {
       alert('Error in ajax');
     });
   },
@@ -53,7 +53,7 @@ var app = {
 
       console.log(reponse);
       // Si tout est OK
-      if (reponse.code == 1) {
+      if (reponse.code === 1) {
         // Affichage du message de connexion
         $('#validDiv').show();
         // Timer de 1 seconde pour lecture du message avant la redirection
@@ -76,9 +76,10 @@ var app = {
   },
 
   controlOfAnswers : function(data) {
-console.log(data.score);
+    console.log(data.score);
+
     for (var i = 0; i < data.result.length; i++) {
-      console.log(data.result[i])
+      console.log(data.result[i]);
       if (data.result[i][0] === "GOOD") {
         $('#cardInfo-'+data.result[i][1]).show();
         $('#cardInfo-'+data.result[i][1]).prev().prev().addClass('alert-success');

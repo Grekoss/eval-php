@@ -67,7 +67,7 @@ class Application {
                 // - 'home' => méthode du controller qui va s'occuper de la page
             // - 'main_home' => le nom de cette route
         //MainController
-        $this->router->map('GET', '/', 'MainController#home', 'main_home');
+        $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
         //UserController
         $this->router->map('GET|POST', '/signup', 'UserController#signup', 'user_signup');
         $this->router->map('GET', '/login', 'UserController#login', 'user_login');
@@ -79,7 +79,7 @@ class Application {
         $this->router->map('GET', '/quiz/[i:id]', 'QuizController#quiz', 'quiz_quiz');
         $this->router->map('POST', '/quiz/[i:id]', 'QuizController#quizPost', 'quiz_quizpost');
         //Test
-        $this->router->map('GET', '/test', 'TestController#test', 'test_test');
+        $this->router->map('GET', '/test', 'TestController#testAction', 'test_test');
     }
 
     public function getRouter() {
