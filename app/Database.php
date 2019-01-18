@@ -9,7 +9,7 @@ class Database {
     private static $_instance;
 
     private function __construct() {
-        //Récupération de la configuration
+        // Retrieving the configuration
         $localDbConfig = parse_ini_file(__DIR__.'/config.conf');
 
         try {
@@ -17,16 +17,16 @@ class Database {
                 "mysql:host={$localDbConfig['DB_HOST']};dbname={$localDbConfig['DB_NAME']};charset=utf8",
                 $localDbConfig['DB_USERNAME'],
                 $localDbConfig['DB_PASSWORD'],
-                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)     // Affiche les erreurs SQL à l'écran
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)     // Show the errors SQL
             );
         }
         catch(\Exception $exception) {
             die('Erreur de connexion...' . $exception->getMessage());
         }
     }
-    // L'unique méthode que l'on a besoin d'utiliser
+    // The only method that one needs to use
     public static function getPDO() {
-        // Si elle n'est pas intancié alors on la crée
+        // If it is not instantiated then we create it
         if (empty(self::$_instance)) {
             self::$_instance = new Database();
         }

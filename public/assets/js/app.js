@@ -1,33 +1,26 @@
 var app = {
   init : function () {
-    console.log('Init');
-
-    // Interception de l'event "submit" du formulaire login
     $('#formLogin').on('submit', app.submitFormLogin);
-
-    // Interception de l'event "submit" du formulaire Quiz
     $('#formQuiz').on('submit', app.submitFormQuiz);
   },
 
   submitFormQuiz : function (evt) {
-
-    // On annule le fonctionnement par défaut
+    // Canceling the default operation
     evt.preventDefault();
 
-    // Récupération des donnés du formulaire
+    // Retrieving form data
     var formData = $(this).serialize();
-    console.log(formData);
 
-     //Appel Ajax
+     // Call AJAX
     $.ajax({
-      url: BASE_PATH+'quiz/'+ID_QUIZ,   // URL appelée par Ajax
-      dataType: 'json',                 // Le type de donnée reçue
-      method: 'POST',                   // La méthode HTTP de l'appel Ajax
-      data: formData                    // Les données envoyés avec l'appel Ajax
+      url: BASE_PATH+'quiz/'+ID_QUIZ,   // URL called by AJAX
+      dataType: 'json',                 // The type of data received
+      method: 'POST',                   // The HTTP method of the AJAX call
+      data: formData                    // The data sent with the AJAX call
 
-    }).done(function(reponse) {
-      // On va sur une fonction pour faciliter le code
-      app.controlOfAnswers(reponse);
+    }).done(function(response) {
+      // Function to facilitate the code
+      app.controlOfAnswers(response);
 
     }).fail(function() {
       alert('Error in ajax');
@@ -36,50 +29,48 @@ var app = {
 
   submitFormLogin : function (evt) {
 
-    // On annule le fonctionnement par défaut
+    // Canceling the default operation
     evt.preventDefault();
 
-    //Récupération des données du formulaire
+    // Retrieving form data
     var formData = $(this).serialize();
-    console.log(formData);
 
-    //Appel Ajax
+    // Call AJAX
     $.ajax({
-      url: BASE_PATH+'login',    // URL appelée par Ajax
-      dataType: 'json',           // Le type de donnée reçue
-      method: 'POST',             // La méthode HTTP de l'appel Ajax
-      data: formData              // Les données envoyés avec l'appel Ajax
-    }).done(function(reponse) {
+      url: BASE_PATH+'login',     // URL called by AJAX
+      dataType: 'json',           // The type of data received
+      method: 'POST',             // The HTTP method of the AJAX call
+      data: formData              // The data sent with the AJAX call
+    }).done(function(response) {
 
-      console.log(reponse);
-      // Si tout est OK
-      if (reponse.code === 1) {
-        // Affichage du message de connexion
+      // if OK
+      if (response.code === 1) {
+        // Show the message of connexion
         $('#validDiv').show();
-        // Timer de 1 seconde pour lecture du message avant la redirection
+        // Timer of 1 second for read the message before redirection
         window.setTimeout(function() {
-          location.href = reponse.url}, 1000);
+          location.href = response.url}, 1000);
         }
       else {
-        // Si erreur, je vide la div des "erreurs"
+        // if error, clean the div of "errors"
         $('#errorsDiv').html('');
-        // Parcours des erreurs
-        reponse.errorList.forEach(function(value, index) {
+        // Course of errors
+        response.errorList.forEach(function(value, index) {
           $('#errorsDiv').append(value+'<br>');
         });
-        // Affichage de la div error
+        // Show the div error
         $('#errorsDiv').show();
       }
-    }).fail(function(reponse) {
+    }).fail(function() {
       alert('Error in ajax');
     });
   },
 
   controlOfAnswers : function(data) {
-    console.log(data.score);
 
     for (var i = 0; i < data.result.length; i++) {
-      console.log(data.result[i]);
+
+      // Show the anecdote and color the color of the title
       if (data.result[i][0] === "GOOD") {
         $('#cardInfo-'+data.result[i][1]).show();
         $('#cardInfo-'+data.result[i][1]).prev().prev().addClass('alert-success');
@@ -89,11 +80,11 @@ var app = {
         $('#cardInfo-'+data.result[i][1]).prev().prev().addClass('alert-warning');
       }
     }
-    // On cache le bouton Valid et affiche le Replay
+    // Hide the button Valid and show the Replay
     $('#quiz-btn-valid').css('display','none');
     $('#quiz-btn-replay').show();
 
-    // On cache Newgame et on met le scores
+    // Hide the Newgame et show the Score
     $('#quiz-newgame').css('display','none');
     $('#quiz-score-box').show();
     $('#quiz-score-txt').text(data.score);
