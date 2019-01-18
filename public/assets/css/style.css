@@ -145,7 +145,6 @@ footer {
 .profile-container-title {
     text-align: center;
     color: #337AB7;
-    /* text-decoration: underline; */
     margin: 0.5em;
 }
 .profile-quizzes-title {
@@ -227,7 +226,7 @@ footer {
 .quiz-question-anecdote-container {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.125);
-
+    display: none;
 }
 .quiz-btn {
     width: 100%;
@@ -235,4 +234,10 @@ footer {
 .quiz-btn-valid{
     background-color: #337AB7;
     color: #FFF;
+}
+#quiz-btn-replay{
+    display: none;
+}
+#quiz-score-box{
+    display: none;
 }

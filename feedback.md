@@ -119,6 +119,10 @@ La plupart des commentaires ci-dessous sont des pistes pour améliorer encore la
 - Originale, la vérification du résultat directement dans le template du formulaire. Ça marche mais ce n’est pas très orthodoxe ; la triche est facile (l’inspecteur du navigateur suffit à trouver la réponse :P) Mieux vaut traiter la vérification des réponses en back ; mais pour cela il aurait fallu garder une trace de la position originale (= avant shuffle) de chaque proposition.
 - Sinon nickel :thumbsup:
 
+### Correction
+
+- Changement de la vérification au niveau du controleur, rendant la triche impossible avec l'inspecteur.
+
 
 
 
@@ -149,3 +153,8 @@ La plupart des commentaires ci-dessous sont des pistes pour améliorer encore la
 - :sparkles::sparkles::sparkles: Excellente évaluation, GG :sparkles::sparkles::sparkles:
 
 Zut, j'ai pas grand chose d'autre à dire :P Bien joué !
+
+### Correction
+
+- Traduction de tout les commentaires en Anglais.
+- Reduction du code de vue des questions en utilisant des `foreach`.
