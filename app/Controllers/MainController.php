@@ -6,7 +6,7 @@ use OQuiz\Models\QuizModel;
 
 class MainController extends CoreController {
 
-    public function home() {
+    public function indexAction() {
 
         // Je demande au QuizModel de me donner la liste de toutes Quiz, pas besoin d'instancier le model car laméthode est static.
         // J'appelle la méthode findAll

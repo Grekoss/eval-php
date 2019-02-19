@@ -4,70 +4,51 @@
 
 <div class="container">
     <div class="quiz-container-title">
-        <h1 class="quiz-title"><?= $quiz->getTitle() ?><em class="quiz-title-count badge-secondary"><?= count($question) ?>&nbsp;questions</em></h1>
+        <h1 class="quiz-title"><?= $quiz->getTitle() ?><em class="quiz-title-count badge-secondary"><?= count($questions) ?>&nbsp;questions</em></h1>
         <div class="quiz-title-description"><?= $quiz->getDescription() ?></div>
         <div class="quiz-title-author">by <?= $author->getFirstName() ?>&nbsp;<?= $author->getLastName() ?></div>
     </div>
 
-
     <?php if($connectedUser !== false) : ?>
-    <div class="alert alert-primary" id="quiz-newgame" role="alert">
-        Nouveau jeu : Répondez au maximum de questions avant de valider
-    </div>
-    <div class="alert alert-success" id="quiz-score-box" role="alert" style="display:none">
-        Votre score : <em id="quiz-score-txt"></em> / <?= count($question) ?>
-        <a class="quiz-replay-link" href="<?= $router->generate('quiz_quiz', ['id' => $quiz->getId()])?>">Rejouer</a>
-    </div>
+
+        <div class="alert alert-primary" id="quiz-newgame" role="alert">
+            Nouveau jeu : Répondez au maximum de questions avant de valider
+        </div>
+        <div class="alert alert-success" id="quiz-score-box" role="alert">
+            Votre score : <em id="quiz-score-txt"></em> / <?= count($questions) ?>
+            <a class="quiz-replay-link" href="<?= $router->generate('quiz_quiz', ['id' => $quiz->getId()])?>">Rejouer</a>
+        </div>
+
     <?php endif; ?>
 
     <form class="row" id="formQuiz" method="post" action="">
-        <?php foreach ($question as $currentQuestion) : ?>
-
-            <?php
-            // Balise PHP pour la création de l'array contenant les propositions de faire un shuffle avec
-            $reponses = array($currentQuestion->getProp1(), $currentQuestion->getProp2(), $currentQuestion->getProp3(), $currentQuestion->getProp4());
-            // Mélange de l'array
-            shuffle($reponses);
-            ?>
-
+        <?php foreach ($questions as $key => $currentQuestion) : ?>
             <div class="quiz-question-card col-4 card">
                 <div class="quiz-question-title card-header">
                     <div class="quiz-question-level badge level-<?= $currentQuestion->getIdLevel()?>"><?= $currentQuestion->name ?></div>
                     <?= $currentQuestion->getQuestion() ?>
                 </div>
                 <div class="quiz-question-container-answers">
-                
-                <?php if($connectedUser !== false) : ?>
 
-                    <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[0]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[0] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[0])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[0] ?></label>
-                    </div>
-                    <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[1]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[1] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[1])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[1] ?></label>
-                    </div>
-                    <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[2]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[2] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[2])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[2] ?></label>
-                    </div>
-                    <div class="form-check quiz-question-liste-radio">
-                        <input class="form-check-input" type="radio" id="<?= trim($reponses[3]) ?>-<?= $currentQuestion->getId() ?>" name="<?= $currentQuestion->getId() ?>" value="<?= ($reponses[3] === $currentQuestion->getProp1()) ? 'GOOD' : 'BAD'  ?>">
-                        <label class="form-check-label" for="<?= trim($reponses[3])?>-<?= $currentQuestion->getId() ?>"><?= $reponses[3] ?></label>
-                    </div> 
+                    <?php foreach ($answers[$key] as $answer) : ?>
+                        <?php if($connectedUser !== false) : ?>
 
-                <?php else : ?>
+                            <div class="form-check quiz-question-liste-radio">
+                                <input class="form-check-input" type="radio" id="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answer) ?>" name="<?= $currentQuestion->getId() ?>" value="<?= trim($answer) ?>" >
+                                <label class="form-check-label" for="<?= $currentQuestion->getId() ?>-<?= str_replace(' ','',$answer) ?>"><?= $answer ?></label>
+                            </div>
 
-                    <ol class="quiz-question-liste">
-                        <li class="quiz-question-liste-item"><?= $reponses[0] ?></li>
-                        <li class="quiz-question-liste-item"><?= $reponses[1] ?></li>
-                        <li class="quiz-question-liste-item"><?= $reponses[2] ?></li>
-                        <li class="quiz-question-liste-item"><?= $reponses[3] ?></li>
-                    </ol>
-                
-                <?php endif; ?>
+                        <?php else : ?>
+
+                            <ol class="quiz-question-liste">
+                                <li class="quiz-question-liste-item"><?= $answer ?></li>
+                            </ol>
+
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+
                 </div>
-                <div class="card quiz-question-anecdote-container card-header" id="cardInfo-<?= $currentQuestion->getId()?>" style="display:none">
+                <div class="card quiz-question-anecdote-container card-header" id="cardInfo-<?= $currentQuestion->getId()?>">
                     <div class="quiz-question-anecdote"><?= $currentQuestion->getAnecdote() ?></div>
                     <a class="quiz-question-anecdote-link" href="https://fr.wikipedia.org/wiki/<?= $currentQuestion->getWiki() ?>" target="_blank">wikipedia(<?= $currentQuestion->getWiki()?>)</a>
                 </div>
@@ -75,7 +56,9 @@
         <?php endforeach; ?>
         <?php if($connectedUser !== false) : ?>
             <button id="quiz-btn-valid" type="submit" class="btn quiz-btn quiz-btn-valid">Valider vos réponses</button>
-            <a id="quiz-btn-replay" href="<?= $router->generate('quiz_quiz', ['id' => $quiz->getId()])?>" class="btn quiz-btn btn-success quiz-btn-replay" role="button" style="display:none" title="Rejouer 1">Rejouer</a>
+            <a id="quiz-btn-replay" href="<?= $router->generate('quiz_quiz', ['id' => $quiz->getId()])?>" class="btn quiz-btn btn-success quiz-btn-replay" role="button" title="Rejouer 1">Rejouer</a>
+
         <?php endif; ?>
+
     </form>
 </div>

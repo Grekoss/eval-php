@@ -27,6 +27,10 @@ La plupart des commentaires ci-dessous sont des pistes pour améliorer encore la
 - C'est bien d'avoir pensé à mettre le nom de la table dans une constante.
 - … mais dommage de ne pas avoir utilisé cette constante dans tes requêtes :stuck_out_tongue_closed_eyes:
 
+### Correction
+
+- [x] Controle de toute les requêtes afin d'utiliser les constantes mis a disposition dans chaque class.
+
 
 
 
@@ -115,6 +119,10 @@ La plupart des commentaires ci-dessous sont des pistes pour améliorer encore la
 - Originale, la vérification du résultat directement dans le template du formulaire. Ça marche mais ce n’est pas très orthodoxe ; la triche est facile (l’inspecteur du navigateur suffit à trouver la réponse :P) Mieux vaut traiter la vérification des réponses en back ; mais pour cela il aurait fallu garder une trace de la position originale (= avant shuffle) de chaque proposition.
 - Sinon nickel :thumbsup:
 
+### Correction
+
+- Changement de la vérification au niveau du controleur, rendant la triche impossible avec l'inspecteur.
+
 
 
 
@@ -145,3 +153,8 @@ La plupart des commentaires ci-dessous sont des pistes pour améliorer encore la
 - :sparkles::sparkles::sparkles: Excellente évaluation, GG :sparkles::sparkles::sparkles:
 
 Zut, j'ai pas grand chose d'autre à dire :P Bien joué !
+
+### Correction
+
+- Traduction de tout les commentaires en Anglais.
+- Reduction du code de vue des questions en utilisant des `foreach`.

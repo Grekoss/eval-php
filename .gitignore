@@ -33,3 +33,4 @@ bower_components/
 .tmproj
 nbproject
 Thumbs.db
+.idea/

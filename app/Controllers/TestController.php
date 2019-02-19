@@ -9,7 +9,7 @@ use OQuiz\Utils\User;
 // UTILISATION DE CETTE CLASS POUR TESTER
 class TestController extends CoreController {
 
-    public function test() {
+    public function testAction() {
         
         // Affichage de la table souhaité
         echo UserModel::TABLE_NAME.'<br>';
